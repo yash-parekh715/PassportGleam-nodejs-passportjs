@@ -2,21 +2,21 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 
-
 //auth login
 router.get("/login", (req, res) => {
-  res.render("login", {user: req.user});
+  res.render("login", { user: req.user });
 });
 
 //auth logout
 router.get("/logout", (req, res) => {
   //handle with passport
-  req.logout((err)=>{
-    if(err){
+  req.logout((err) => {
+    if (err) {
       console.error(err);
-      }
-  })
-  res.redirect("/")
+    }
+  });
+  res.clearCookie();
+  res.redirect("/");
 });
 
 //auth with google
